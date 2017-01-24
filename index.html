@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Ihr sauberes Zertifikat</title>
+    <script>
+      var g;
+      function genCert(i, d) {
+        if (i == 0) {
+          document.getElementById("content").innerHTML =
+            'Sind Sie Mitglied vom Maschinendeck?<br/><input type="button" onclick="genCert(5, -8500)" value="Ja!"><input type="button" onclick="genCert(1, true)" value="Nein!">';
+        } else if (i == 1 && d) {
+          document.getElementById("content").innerHTML =
+            'Wann haben Sie sich zu letzt gewaschen?<br/><input type="button" value="Heute" onclick="genCert(2,0)">' +
+            '<input type="button" value="Gestern" onclick="genCert(2,-10)">' +
+            '<input type="button" value="Vorgestern" onclick="genCert(2,-50)">' +
+            '<input type="button" value="Wie, waschen?!" onclick="genCert(2,-9000)">';
+        } else if (i == 2) {
+          document.getElementById("content").innerHTML = "Bitte warten.";
+          setTimeout(function() { genCert(3, d) }, 1000);
+        } else if (i == 3) {
+          document.getElementById("content").innerHTML =
+            'Bitte geben Sie ihr schmutzigstes Geheimnis ein.<br/><input type="text"><input type="button" onclick="genCert(4,' + d + ')" value="So schmutzig!">';
+        } else if (i == 4) {
+          document.getElementById("content").innerHTML =
+            'Hatten Sie Geschlechtsverkehr?<br/><input type="button" onclick="genCert(5,' + (d + 100) + ')" value="Ja!">' +
+            '<input type="button" onclick="genCert(5,' + (d + 500) + ')" value="Nein!">';
+        } else if (i == 5) {
+          var s = d == 500 ? 0 : d == 490 ? 1 : d == 450 ? 2 : d == 100 ? 3 : d == 90 ? 4 : d == 50 ? 5 : d == -8500 ? 6 : 7;
+          var k = [ "Extremst Sauber", "Sauber", "Sehr Dreckig", "Sauber", "Sehr Dreckig", "Extrem Dreckig", "Abartig", "Abartig!!!" ];
+          g = k[s];
+          document.getElementById("content").innerHTML = "Bitte warten."
+          setTimeout(function() {
+            document.getElementById("content").innerHTML = 'Sie sind...<br/><h1>' + g + '</h1>';
+          }, 2500);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="content">Ein Browser ohne Javascript? Dreckig! Bitte aktivieren Sie Javascript!</div>
+    <script>genCert(0);</script>
+  </body>
+</html>
+
